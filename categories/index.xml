@@ -5,6 +5,16 @@
     <link>https://vishnubraj.github.io/categories/</link>
     <description>Recent content in Categories on Vishnu&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://vishnubraj.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Thu, 06 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://vishnubraj.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tech</title>
+      <link>https://vishnubraj.github.io/categories/tech/</link>
+      <pubDate>Thu, 06 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://vishnubraj.github.io/categories/tech/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>
