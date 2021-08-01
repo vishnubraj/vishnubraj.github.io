@@ -14,7 +14,7 @@
       
       <guid>https://vishnubraj.github.io/post/elasticsearch/</guid>
       <description>Index, Shards and Replicas An index is automatically created when a document is inserted into the Elastic search. we can define the number shards, while creating the index or it will take default 5 shards It means elastic search will create 5 primary shards that will contain our data
-| Shard 1 | &amp;mdash;- | Shard 2| &amp;mdash;- | Shard 3| &amp;mdash;- | Shard 4 | &amp;mdash;- | Shard 5 |</description>
+ Every time we index a document, elasticsearch will decide which primary shard is supposed to hold that document and will index it there.</description>
     </item>
     
   </channel>
