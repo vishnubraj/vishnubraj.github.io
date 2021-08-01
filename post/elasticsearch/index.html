@@ -216,7 +216,7 @@
 <p>An index is automatically created when a document is inserted into the Elastic search. we can define the number shards, while creating the index or it will take default 5 shards
 It means elastic search will create 5 primary shards that will contain our data</p>
 <p>
-  <img src="/images/es_primary_shards.svg" alt="My Diagram">
+  <img src="/images/es_primary_shards.drawio.svg" alt="My Diagram">
 
 </p>
 <p>Every time we index a document, elasticsearch will decide which primary shard is supposed to hold that document and will index it there. Primary shards are not a copy of the data, they are the data! Having multiple shards does help taking advantage of parallel processing on a single machine, but the whole point is that if we start another elasticsearch instance on the same cluster, the shards will be distributed in an even way over the cluster.
