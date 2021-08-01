@@ -221,18 +221,33 @@ It means elastic search will create 5 primary shards that will contain our data<
 </p>
 <p>Every time we index a document, elasticsearch will decide which primary shard is supposed to hold that document and will index it there. Primary shards are not a copy of the data, they are the data! Having multiple shards does help taking advantage of parallel processing on a single machine, but the whole point is that if we start another elasticsearch instance on the same cluster, the shards will be distributed in an even way over the cluster.
 Node 1 will then hold for example only three shards:</p>
-<p>| Shard 1 | &mdash;- | Shard 2| &mdash;- | Shard 3|</p>
+<p>
+  <img src="/images/es_primary_shards2.drawio.svg" alt="ES Diagram">
+
+</p>
 <p>Since the remaining two shards have been moved to the newly started node:</p>
-<p>| Shard 4 |  &mdash;- | Shard 5 |</p>
+<p>
+  <img src="/images/es_primary_shards3.drawio.svg" alt="ES Diagram">
+
+</p>
 <p>This happens because elasticsearch is a distributed search engine and this way we can make use of multiple nodes/machines to manage big amounts of data.
 Every elasticsearch index is composed of at least one primary shard since that&rsquo;s where the data is stored. Every shard comes at a cost, though, therefore if we have a single node and no foreseeable growth, just stick with a single primary shard.
 Another type of shard is a replica. The default is 1, meaning that every primary shard will be copied to another shard that will contain the same data. Replicas are used to increase search performance and for fail-over. A replica shard is never going to be allocated on the same node where the related primary is (it would pretty much be like putting a backup on the same disk as the original data).
 Back to our example, with 1 replica we&rsquo;ll have the whole index on each node, since 3 replica shards will be allocated on the first node and they will contain exactly the same data as the primaries on the second node:</p>
-<p>| Shard 1 | &mdash;- | Shard 2| &mdash;- | Shard 3|  &mdash;- | Replica 4 |  &mdash;- | Replica 5 |</p>
+<p>
+  <img src="/images/es_primary_shards4.drawio.svg" alt="ES Diagram">
+
+</p>
 <p>Same for the second node, which will contain a copy of the primary shards on the first node:</p>
-<p>| Replica 1 | &mdash;- | Replica 2| &mdash;- | Replica 3|  &mdash;- | Shard 4 |  &mdash;- | Shard 5 |</p>
+<p>
+  <img src="/images/es_primary_shards5.drawio.svg" alt="ES Diagram">
+
+</p>
 <p>With a setup like this, if a node goes down we will still have the whole index.  The replica shards will automatically become primaries and the cluster will work properly despite the node failure, as follows</p>
-<p>| Shard 1 | &mdash;- | Shard 2| &mdash;- | Shard 3|  &mdash;- | Shard 4 |  &mdash;- | Shard 5 |</p>
+<p>
+  <img src="/images/es_primary_shards6.drawio.svg" alt="ES Diagram">
+
+</p>
 <p>if we set  &ldquo;number_of_replicas&rdquo;:1, the replicas cannot be assigned anymore as they are never allocated on the same node where their primary is. If we have only one node cluster  then we will  have 5 unassigned shards, the replicas, and the cluster status will be YELLOW instead of GREEN. No data loss, but it could be better as some shards cannot be assigned.
 As soon as the node that had left is backed up, it&rsquo;ll join the cluster again and the replicas will be assigned again. The existing shard on the second node can be loaded but they need to be synchronized with the other shards, as write operations most likely happened while the node was down. At the end of this operation, the cluster status will become GREEN.</p>
 
