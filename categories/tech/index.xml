@@ -6,7 +6,16 @@
     <description>Recent content in Tech on Vishnu&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 06 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://vishnubraj.github.io/categories/tech/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 06 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://vishnubraj.github.io/categories/tech/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Layer3 Switch vs Router</title>
+      <link>https://vishnubraj.github.io/post/routerswitchcompare/</link>
+      <pubDate>Sun, 06 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://vishnubraj.github.io/post/routerswitchcompare/</guid>
+      <description>Disadvantages of using Layer 3 switch as a router  Doesn&amp;rsquo;t support MPLS and VPN services Doesn&amp;rsquo;t support NAT, firewalling, tunnel, IPSec Size of routing table is small Forwarding is performed by ASIC  No QOS support  Advantages of using routers  Non-Ethernet connections (which still do exist) Large routing tables Many routing VRFs — campus and datacenter switches don’t need ‘em, at least for common uses NAT, especially with protocol fixups (address in payload situations) Large ACLs without loss of efficiency QoS not tied to 4 or 8 hardware queues (i.</description>
+    </item>
+    
     <item>
       <title>Elastic Search Index, Shards and Replicas</title>
       <link>https://vishnubraj.github.io/post/elasticsearch/</link>

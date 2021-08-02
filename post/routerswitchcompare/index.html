@@ -28,9 +28,9 @@
     
 
     
-    <meta name="title" content="Network Engineering" />
-    <meta property="og:title" content="Network Engineering" />
-    <meta property="twitter:title" content="Network Engineering" />
+    <meta name="title" content="Layer3 Switch vs Router" />
+    <meta property="og:title" content="Layer3 Switch vs Router" />
+    <meta property="twitter:title" content="Layer3 Switch vs Router" />
     
 
     
@@ -47,7 +47,7 @@
     <meta name="keyword"  content="Vishnubraj, devops, prometheus, snmp_exporter, monitoring, cisco, Go, Golang, networking">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>Vishnu Blog</title>
+    <title>Layer3 Switch vs Router-Vishnu Blog</title>
 
     <link rel="canonical" href="/post/routerswitchcompare/">
 
@@ -170,16 +170,24 @@
                 <div class="post-heading">
                     <div class="tags">
                         
+                        <a class="tag" href="/tags/router" title="router">
+                            router
+                        </a>
+                        
+                        <a class="tag" href="/tags/switch" title="switch">
+                            switch
+                        </a>
+                        
                     </div>
-                    <h1></h1>
+                    <h1>Layer3 Switch vs Router</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by 
                         
-                                Vishnu&#39;s Blog
+                                 &#34;Vishnu&#34;
                          
                         on 
-                        Monday, January 1, 0001
+                        Sunday, June 6, 2021
                         
                         
                         
@@ -204,31 +212,37 @@
                 post-container">
 
                 
-                <p>Disadvantages of using Layer 3 switch as a router
-Doesn&rsquo;t support MPLS and  VPN services
-Doesn&rsquo;t support NAT, firewalling, tunnel, IPSec
-Size of routing table is small
-Forwarding is performed by ASIC 
-No QOS support</p>
-<p>Advantages of using routers</p>
-<p>Non-Ethernet connections (which still do exist)
-Large routing tables; check the verified scalability document for your favorite Cisco switch — numbers like 8,000, 24,000, or 32,000 prefixes are common
-Many routing VRFs — campus and datacenter switches don’t need ‘em, at least for common uses
-NAT, especially with protocol fixups (address in payload situations)
-Large ACLs without loss of efficiency
-QoS not tied to 4 or 8 hardware queues (i.e., QoS that can support more than 4, 6, or 8 classes of traffic complexity)
-QoS policing (switches may do this, with limitations)
-QoS shaping (complex/not in chipsets)
-QoS: Layer 7 traffic recognition (Cisco “AVC”)
-MPLS labels (OK, Nexus 7K M-series line cards are basically routers on a card)
-Segment routing
-LISP
-IPsec or SSL VPN
-(Other features, but this list is already long enough)</p>
-<p>Switches usually have lots of ports of the same or similar speeds. As such they don&rsquo;t need deep buffers and the buffers are usually shared among all ports or groups of ports.
-Routers usually have dedicated buffers per interface or interface module. This is to do with rate shaping when the ingress interface for a traffic flow is much faster than the egress interface. Think GigE LAN port and ADSL WAN port. Switches CAN do rate shaping but that process is hard on the buffers and routers are designed to connect lots of different connectivity types of different speeds together Switches tend to operate on just the one (nominally Ethernet). so if you have traffic entering a 10G uplink at any kind of rate, and the egress port is running at 10M then you will see a lot of output drops on that interface as the TX Buffer gets filled. If you send bursty traffic into a router it will generally cause you to see increased latency as it queues traffic, but loss rates are much lower.
-Feature sets. Switches tend not to have as many higher layer inspection features as routers. Stuff like NAT, NBAR, IPSec, Tunneling, PBR, IPSLA etc. Lots of those features require process switching, which needs a lot of RAM and CPU resource. Switches tend not to have that as they&rsquo;re designed to do basic routing functions but very fast using specialized hardware, line rate in most cases. Routers are designed to do more complex and fiddly things, not necessarily as quickly. Which is why a £5000 L3 switch will have a much higher routing throughput than a £5000 router. But the Router will be more flexible in the things it can do. Most modern routers will fast switch L3 stuff in hardware as well, but that performance isn&rsquo;t usually quoted in the data sheet because if you ask it to do something like process an ACL or NAT then it has to process switch those packets instead. (I.E they go to the main CPU not processed by an ASIC on the interface module)
-Route capacity. As I said before Switches are designed to do basic routing very fast based on hardware chipsets built for that purpose. They don&rsquo;t tend to have as much memory or CPU power as a router of equivalent value, so aren&rsquo;t capable of holding as large a routing table as a router. A router is designed to run and interconnect multiple different routing protocols, all of which need memory to store their own topology tables as well as the main RIB. Thus is better equipped to do that. An ASR1001X is a ~£10k router, a Catalyst 4500X is a ~£10k layer 3 switch. The ASR will take 750,000 routes, the 4500X will take only 32,000. Again this is because they are designed for different jobs. L3 switches are designed to work in the middle of a network usually running just the one protocol and routing local traffic. Routers are designed to work at the edge of the network and route internal and external traffic as well as manipulate and filter that traffic.
+                <h1 id="disadvantages-of-using-layer-3-switch-as-a-router">Disadvantages of using Layer 3 switch as a router</h1>
+<ul>
+<li>Doesn&rsquo;t support MPLS and VPN services</li>
+<li>Doesn&rsquo;t support NAT, firewalling, tunnel, IPSec</li>
+<li>Size of routing table is small</li>
+<li>Forwarding is performed by ASIC </li>
+<li>No QOS support</li>
+</ul>
+<h1 id="advantages-of-using-routers">Advantages of using routers</h1>
+<ul>
+<li>Non-Ethernet connections (which still do exist)</li>
+<li>Large routing tables</li>
+<li>Many routing VRFs — campus and datacenter switches don’t need ‘em, at least for common uses
+NAT, especially with protocol fixups (address in payload situations)</li>
+<li>Large ACLs without loss of efficiency</li>
+<li>QoS not tied to 4 or 8 hardware queues (i.e., QoS that can support more than 4, 6, or 8 classes of traffic complexity)</li>
+<li>QoS policing (switches may do this, with limitations)</li>
+<li>QoS shaping (complex/not in chipsets)</li>
+<li>QoS: Layer 7 traffic recognition (Cisco “AVC”)</li>
+<li>MPLS labels (OK, Nexus 7K M-series line cards are basically routers on a card)</li>
+<li>Segment routing</li>
+<li>LISP</li>
+<li>IPsec or SSL VPN</li>
+</ul>
+<h1 id="buffer">Buffer</h1>
+<p>Switches usually have lots of ports of the same or similar speeds. As such they don&rsquo;t need deep buffers and the buffers are usually shared among all ports or groups of ports.</p>
+<p>Routers usually have dedicated buffers per interface or interface module. This is to do with rate shaping when the ingress interface for a traffic flow is much faster than the egress interface. Think GigE LAN port and ADSL WAN port. Switches CAN do rate shaping but that process is hard on the buffers and routers are designed to connect lots of different connectivity types of different speeds together Switches tend to operate on just the one (nominally Ethernet). so if you have traffic entering a 10G uplink at any kind of rate, and the egress port is running at 10M then you will see a lot of output drops on that interface as the TX Buffer gets filled. If you send bursty traffic into a router it will generally cause you to see increased latency as it queues traffic, but loss rates are much lower.</p>
+<h1 id="feature-sets">Feature sets.</h1>
+<p>Switches tend not to have as many higher layer inspection features as routers. Stuff like NAT, NBAR, IPSec, Tunneling, PBR, IPSLA etc. Lots of those features require process switching, which needs a lot of RAM and CPU resource. Switches tend not to have that as they&rsquo;re designed to do basic routing functions but very fast using specialized hardware, line rate in most cases. Routers are designed to do more complex and fiddly things, not necessarily as quickly. Which is why a £5000 L3 switch will have a much higher routing throughput than a £5000 router. But the Router will be more flexible in the things it can do. Most modern routers will fast switch L3 stuff in hardware as well, but that performance isn&rsquo;t usually quoted in the data sheet because if you ask it to do something like process an ACL or NAT then it has to process switch those packets instead. (I.E they go to the main CPU not processed by an ASIC on the interface module)</p>
+<h1 id="route-capacity">Route capacity.</h1>
+<p>As I said before Switches are designed to do basic routing very fast based on hardware chipsets built for that purpose. They don&rsquo;t tend to have as much memory or CPU power as a router of equivalent value, so aren&rsquo;t capable of holding as large a routing table as a router. A router is designed to run and interconnect multiple different routing protocols, all of which need memory to store their own topology tables as well as the main RIB. Thus is better equipped to do that. An ASR1001X is a ~£10k router, a Catalyst 4500X is a ~£10k layer 3 switch. The ASR will take 750,000 routes, the 4500X will take only 32,000. Again this is because they are designed for different jobs. L3 switches are designed to work in the middle of a network usually running just the one protocol and routing local traffic. Routers are designed to work at the edge of the network and route internal and external traffic as well as manipulate and filter that traffic.
 Buffer sizing depends entirely on the module you put in. How much you&rsquo;ll need to use also depends on your traffic patterns and what you&rsquo;re doing. If you&rsquo;re doing 10G in and 10G out you should get next to no buffering (unless you&rsquo;re doing QoS and rate limiting certain traffic) because traffic can get out as fast as it&rsquo;s being pushed in. If however you have two 10G interfaces taking traffic in and one 10G interface to the internet then upstream traffic will get buffered when there are bursts of ingress traffic that exceed 10G. Google microbursts for more on that topic. The amount of buffer you need depends on how big your average packet size is, how big your bursts are, and how frequently they happen. To complicate matters more most of the buffer memory is broken down into buffer sizes for different sized packets. On some platforms the buffer size is fixed, on others it&rsquo;s adjustable and can borrow system RAM as I/O memory. On cisco stuff you can do show interface will show you the output queue statistics. If you&rsquo;re seeing lots of output drops (and you&rsquo;re not running a QoS policy on the interface) but the interface isn&rsquo;t heavily utilized in terms of bandwidth then you&rsquo;re likely getting microbursts and need to allocate more buffers (more queue length) to that interface.
 Most people just eyeball buffers by monitoring the tail drop situation and adjusting. Calculating it properly can get quite complicated.</p>
 
@@ -238,11 +252,11 @@ Most people just eyeball buffers by monitoring the tail drop situation and adjus
                 <hr>
                 <ul class="pager">
                     
-                    
-                    <li class="next">
-                        <a href="/post/elasticsearch/" data-toggle="tooltip" data-placement="top" title="Elastic Search Index, Shards and Replicas">Next
-                            Post &rarr;</a>
+                    <li class="previous">
+                        <a href="/post/elasticsearch/" data-toggle="tooltip" data-placement="top" title="Elastic Search Index, Shards and Replicas">&larr;
+                            Previous Post</a>
                     </li>
+                    
                     
                 </ul>
 
@@ -264,6 +278,10 @@ Most people just eyeball buffers by monitoring the tail drop situation and adjus
                     <hr class="hidden-sm hidden-xs">
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
+                        
+                        
+                        
+                        
                         
                         
                         
